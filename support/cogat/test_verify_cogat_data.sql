@@ -16,6 +16,12 @@ select * from c_color_swatch_list;
 
 select count(*) from rpt_bbcard_detail_cogat;  
 
+select distinct m.bb_measure_code, m.moniker, m.bb_measure_id 
+from pm_bbcard_measure m join pm_bbcard_measure_item mi on m.bb_measure_id = mi.bb_measure_id
+where m.bb_group_id = 1000015;
+
+select * from pm_bbcard_group;
+
 /* ************************************************************************************************* 
 
 Refresh the selection critieria so that you can see the menu options available in the baseball

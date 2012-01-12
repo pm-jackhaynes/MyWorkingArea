@@ -1,9 +1,9 @@
-use wy_sub1s_ods;
+use mn_wayzatas_ods;
 
-select 'MAX Group ID is: ', max(bb_group_id), ' and MUST be equal to or larger than: ', pmi_admin.pmi_f_get_next_sequence('pm_bbcard_group', 1)
+select 'MAX Group ID is: ', max(bb_group_id), ' and MUST be LESS than: ', pmi_admin.pmi_f_get_next_sequence('pm_bbcard_group', 1)
 from pm_bbcard_group;
 
-select 'MAX Group ID is: ', max(swatch_id), ' and MUST be equal to or larger than: ', pmi_admin.pmi_f_get_next_sequence('c_color_swatch', 1) 
+select 'MAX Group ID is: ', max(swatch_id), ' and MUST be LESS than: ', pmi_admin.pmi_f_get_next_sequence('c_color_swatch', 1) 
 from c_color_swatch;
 
 select * from pm_bbcard_group;
@@ -14,7 +14,47 @@ order by bb_measure_id, sort_order;
 select * from c_color_swatch;
 select * from c_color_swatch_list;
 
-select count(*) from rpt_bbcard_detail_cogat;  
+select count(*) from rpt_bbcard_detail_nwea;  
+
+select distinct m.bb_measure_code, m.moniker, m.bb_measure_id 
+from pm_bbcard_measure m join pm_bbcard_measure_item mi on m.bb_measure_id = mi.bb_measure_id
+where m.bb_group_id = 1000015;
+
+select * from pm_bbcard_group;
+
+select * from pmi_admin.imp_table_column where table_id = 1000130;
+
+-- call mn_wayzata.etl_imp();
+
+select distinct growth_measure_flag from mn_wayzata_ods.pmi_ods_nwea;
+
+select  upload_id, client_id, table_id, auto_batch_id, upload_status_code, 
+        import_table_name, upload_start_timestamp, last_edit_timestamp, 
+        substring(comment from 1 for 30) as comment 
+        from mn_wayzata_ods.imp_upload_log
+where upload_start_timestamp > '2012-01-07';
+
+
+update mn_wayzata_ods.imp_upload_log
+set upload_status_code = 'm'
+where upload_id = 3068223;
+
+select * from mn_wayzata_ods.imp_table_column where table_id = 1000130;
+select * from pmi_admin.imp_table_column where table_id = 1000130;
+
+use mn_wayzata_ods;
+ -- After running the imp_sync procedure be sure the new values appear in the ods imp_table_column table.
+ -- IMPORTANT: This drops the pmi_ods_nwea table so you might want to back up the infomration before running
+call imp_sync_table_def_to_admin_by_name('pmi_ods_nwea');
+call imp_drop_create_pmi_ods_table_by_name('pmi_ods_nwea');
+
+-- create table mn_wayzata_ods.pmi_ods_nwea_jack as select * from mn_wayzata_ods.pmi_ods_nwea;
+truncate mn_wayzata_ods.pmi_ods_nwea;
+call mn_wayzata_ods.imp_process_upload_log();
+
+select count(*) from mn_wayzata_ods.pmi_ods_nwea;
+
+select distinct growth_measure_flag from mn_wayzata_ods.pmi_ods_nwea;
 
 /* ************************************************************************************************* 
 
@@ -24,7 +64,7 @@ card menu.
 
 ************************************************************************************************* */
 
-call wy_sub1.etl_pm_bbcard_measure_select();
+call mn_wayzata.etl_pm_bbcard_measure_select();
 
 /* *************************************************************************************************
 
@@ -35,15 +75,27 @@ SQL to verify that you are creating the correct rows in the rpt_bbcard_detail Ta
 select * from rpt_bbcard_detail_cogat 
 where student_id = 127747191 limit 100;
 
-select s.last_name, s.first_name, rpt.student_id, rpt.bb_group_id, rpt.bb_measure_id, rpt.bb_measure_item_id, m.bb_measure_code, mi.bb_measure_item_code, rpt.score, rpt.score_color
-from rpt_bbcard_detail_cogat rpt
-join c_student s on rpt.student_id = s.student_id and s.student_id = 127747191
+select s.last_name, s.first_name, rpt.school_year_id, rpt.student_id, rpt.bb_group_id, rpt.bb_measure_id, rpt.bb_measure_item_id, m.bb_measure_code, mi.bb_measure_item_code, rpt.score, rpt.score_color
+from rpt_bbcard_detail_nwea rpt
+join c_student s on rpt.student_id = s.student_id 
 join pm_bbcard_measure m on rpt.bb_group_id = m.bb_group_id and rpt.bb_measure_id = m.bb_measure_id
 join pm_bbcard_measure_item mi on rpt.bb_group_id = m.bb_group_id and rpt.bb_measure_id = m.bb_measure_id and rpt.bb_measure_item_id = mi.bb_measure_item_id
 order by rpt.student_id, rpt.bb_group_id, rpt.bb_measure_id, rpt.bb_measure_item_id;
 
-create table pmi_ods_cogat_jack as select * from pmi_ods_cogat;
-select count(*) from pmi_ods_cogat_jack;
+/*
+
+    Find some data you can report on!
+
+*/
+select distinct s.last_name, s.first_name, sch.moniker
+from mn_wayzata_ods.pmi_ods_nwea as ods
+   join    mn_wayzata.c_student as s
+      on      s.student_code = ods.student_id
+   join    mn_wayzata.c_student_year sy
+      on      s.student_id = sy.student_id
+   join    mn_wayzata.c_school sch
+      on      sy.school_id = sch.school_id
+where ods.growth_measure_flag = 'False';
 
 select '*** Group Code to be processed:', cast(v_bb_group_id as char) from dual;
 
@@ -53,14 +105,45 @@ select * from tmp_date_conversion;
 select * from tmp_stu_admin;
 
 
+
 -- delete from c_color_swatch where swatch_id in (1000022, 1000023, 1000024);
 -- delete from pm_bbcard_group where bb_group_id in (1000024);
 -- delete from pm_bbcard_measure where bb_group_id = 1000024;
 -- delete from pm_bbcard_measure_item where bb_group_id = 1000024;
 
 select test_start_date, str_to_date(test_start_date, '%m/%d/%Y') from v_pmi_ods_cogat;
-Select * from wy_sub1_ods.pmi_ods_cogat;
-        
+Select * from mn_wayzata_ods.pmi_ods_nwea;
+
+
+
+/*  ****************************************************************************************************************************************************************
+
+      Create a backfill conditon for testing
+      
+ *  ************************************************************************************************************************************************************** */
+  
+use mn_wayzata;
+select * from c_student where student_code = '034351';
+-- delete from c_ayp_strand_student where student_id = 127698084;
+-- delete from c_ayp_subject_student where student_id = 127698084;
+-- delete from c_student_school_list where student_id = 127698084;
+-- delete from c_student_year where student_id = 127698084;
+
+select * from tmp_student_year_backfill;
+select * from c_student_year where student_id = 127698084;
+
+
+/*  ****************************************************************************************************************************************************************
+
+      Backup pmi_ods_nwea data
+      
+ *  ************************************************************************************************************************************************************** */
+
+
+use mn_wayzata_ods;
+create table pmi_ods_nwea_jack as select * from pmi_ods_nwea;
+select count(*) from pmi_ods_nwea_jack;
+
 
 /*  ****************************************************************************************************************************************************************
 
@@ -68,8 +151,8 @@ Select * from wy_sub1_ods.pmi_ods_cogat;
       
  *  ************************************************************************************************************************************************************** */
 
-truncate wy_sub1_ods.pmi_ods_nwea;
-insert into wy_sub1_ods.pmi_ods_nwea (
+truncate mn_wayzata_ods.pmi_ods_nwea;
+insert into mn_wayzata_ods.pmi_ods_nwea (
 row_num,
 student_id,
 student_name,
@@ -105,7 +188,21 @@ goal_rit_score7,
 goal_adjective7,
 goal_name7,
 lexile_min,
-lexile_max
+lexile_max,
+student_gender,
+rit_reading_score,
+growth_measure_flag,
+rit_reading_min,
+rit_reading_max,
+test_start_time,
+percent_correct,
+projected_proficiency,
+goal_rit_scrore_8,
+goal_adj_8,
+goal_name_8,
+goal_rit_score_9,
+goal_adj_9,
+goal_name_9
 )
 select 
 row_num,
@@ -143,8 +240,22 @@ goal_rit_score7,
 goal_adjective7,
 goal_name7,
 lexile_min,
-Lexile_Max
-From  wy_sub1_ods.pmi_ods_nwea_jack;
+Lexile_Max,
+student_gender,
+rit_reading_score,
+growth_measure_flag,
+rit_reading_min,
+rit_reading_max,
+test_start_time,
+percent_correct,
+projected_proficiency,
+goal_rit_scrore_8,
+goal_adj_8,
+goal_name_8,
+goal_rit_score_9,
+goal_adj_9,
+goal_name_9
+From  mn_wayzata_ods.pmi_ods_nwea_jack;
 
 /*  ****************************************************************************************************************************************************************
 
@@ -152,8 +263,8 @@ From  wy_sub1_ods.pmi_ods_nwea_jack;
       
  *  ************************************************************************************************************************************************************** */
 
-truncate wy_sub1_ods.pmi_ods_nwea;
-insert into wy_sub1_ods.pmi_ods_nwea (
+truncate mn_wayzata_ods.pmi_ods_nwea;
+insert into mn_wayzata_ods.pmi_ods_nwea (
 row_num,
 student_id,
 student_name,
@@ -189,11 +300,25 @@ goal_rit_score7,
 goal_adjective7,
 goal_name7,
 lexile_min,
-lexile_max
+lexile_max,
+student_gender,
+rit_reading_score,
+growth_measure_flag,
+rit_reading_min,
+rit_reading_max,
+test_start_time,
+percent_correct,
+projected_proficiency,
+goal_rit_scrore_8,
+goal_adj_8,
+goal_name_8,
+goal_rit_score_9,
+goal_adj_9,
+goal_name_9
 )
 values
  (1                          -- row_num,
-  ,370905181                 -- student_id
+  ,'034351'                 -- student_id
   ,'Haynes, Jack'            -- student_name
   ,05                        -- grade
   ,'Spring 2011'               -- term_name
@@ -227,9 +352,23 @@ values
   ,'A7'
   ,'Goal 7 name'
   ,13
-  ,14)
+  ,14
+ ,'M'
+ ,15
+ ,'True'
+ ,16
+ ,16
+ ,'10:01:02'
+ ,17
+ ,18
+ ,19
+ ,'A8'
+ ,'Goal 8 name'
+ ,20
+ ,'A9'
+ ,'Goal 9 name')
   , (2                          -- row_num,
-  ,370905181                  -- student_id
+  ,'034351'                  -- student_id
   ,'Haynes, Jack'            -- student_name
   ,05                        -- grade
   ,'Spring 2011'               -- term_name
@@ -263,9 +402,23 @@ values
   ,'B7'
   ,'Goal 7B name'
   ,31
-  ,32)
+  ,32
+ ,'M'
+ ,33
+ ,'False'
+ ,34
+ ,35
+ ,'10:02:03'
+ ,36
+ ,37
+ ,38
+ ,'A8'
+ ,'Goal 8B name'
+ ,39
+ ,'A9'
+ ,'Goal 9B name')
   , (3                          -- row_num,
-  ,370905181                  -- student_id
+  ,'034351'                  -- student_id
   ,'Haynes, Jack'            -- student_name
   ,05                        -- grade
   ,'Spring 2011'               -- term_name
@@ -299,9 +452,23 @@ values
   ,'C7'
   ,'Goal 7C name'
   ,51
-  ,52)
+  ,52
+ ,'M'
+ ,53
+ ,'True'
+ ,54
+ ,55
+ ,'10:02:03'
+ ,56
+ ,57
+ ,58
+ ,'A8'
+ ,'Goal 8C name'
+ ,59
+ ,'A9'
+ ,'Goal 9C name')
   , (4                          -- row_num,
-  ,370905181                  -- student_id
+  ,'034351'                  -- student_id
   ,'Haynes, Jack'            -- student_name
   ,05                        -- grade
   ,'Spring 2011'               -- term_name
@@ -335,9 +502,23 @@ values
   ,'D7'
   ,'Goal 7D name'
   ,71
-  ,72)
+  ,72
+ ,'M'
+ ,73
+ ,'False'
+ ,74
+ ,75
+ ,'10:02:03'
+ ,76
+ ,77
+ ,78
+ ,'A8'
+ ,'Goal 8D name'
+ ,79
+ ,'A9'
+ ,'Goal 9D name')
   , (5                          -- row_num,
-  ,370905181                  -- student_id
+  ,'034351'                  -- student_id
   ,'Haynes, Jack'            -- student_name
   ,05                        -- grade
   ,'Spring 2011'               -- term_name
@@ -371,9 +552,23 @@ values
   ,'E7'
   ,'Goal 7E name'
   ,91
-  ,92)
+  ,92
+ ,'M'
+ ,93
+ ,'True'
+ ,94
+ ,95
+ ,'10:02:03'
+ ,96
+ ,97
+ ,98
+ ,'A8'
+ ,'Goal 8E name'
+ ,99
+ ,'A9'
+ ,'Goal 9E name')
   , (6                          -- row_num,
-  ,370905181                  -- student_id
+  ,'034351'                  -- student_id
   ,'Haynes, Jack'            -- student_name
   ,06                        -- grade
   ,'Spring 2011'               -- term_name
@@ -407,9 +602,23 @@ values
   ,'F7'
   ,'Goal 7F name'
   ,112
-  ,14)
+  ,113
+ ,'M'
+ ,114
+ ,'False'
+ ,115
+ ,116
+ ,'10:02:03'
+ ,117
+ ,118
+ ,119
+ ,'A8'
+ ,'Goal 8F name'
+ ,120
+ ,'A9'
+ ,'Goal 9F name')
   , (7                          -- row_num,
-  ,370905181                  -- student_id
+  ,'034351'                  -- student_id
   ,'Haynes, Jack'            -- student_name
   ,05                        -- grade
   ,'Spring 2011'               -- term_name
@@ -443,9 +652,23 @@ values
   ,'G7'
   ,'Goal 7G name'
   ,132
-  ,133)
+  ,133
+ ,'M'
+ ,134
+ ,'True'
+ ,135
+ ,136
+ ,'10:02:03'
+ ,137
+ ,138
+ ,139
+ ,'A8'
+ ,'Goal 8G name'
+ ,140
+ ,'A9'
+ ,'Goal 9G name')
   , (8                          -- row_num,
-  ,370905181                  -- student_id
+  ,'034351'                  -- student_id
   ,'Haynes, Jack'            -- student_name
   ,05                        -- grade
   ,'Spring 2011'               -- term_name
@@ -479,4 +702,18 @@ values
   ,'H7'
   ,'Goal 7H name'
   ,13
-  ,14);
+  ,14
+ ,'M'
+ ,15
+ ,'False'
+ ,16
+ ,17
+ ,'10:02:03'
+ ,18
+ ,19
+ ,20
+ ,'A8'
+ ,'Goal 8H name'
+ ,21
+ ,'A9'
+ ,'Goal 9H name');
