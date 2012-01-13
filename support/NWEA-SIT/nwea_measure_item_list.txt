@@ -1,0 +1,253 @@
+bb_group_code	bb_measure_code	bb_measure_item_code	moniker	sort_order	swatch_code	score_sort_type_code	active_flag	dynamic_creation_flag
+nwea	langSurveyWGoals	goalAdj5Fall	"Goal Adjective 5 - Fall"	14.00		a	1	0
+nwea	langSurveyWGoals	goalAdj5Spg	"Goal Adjective 5 - Spring"	114.00		a	1	0
+nwea	langSurveyWGoals	goalIRITAdj6Fall	"Goal Adjective 6 - Fall"	16.00		a	1	0
+nwea	langSurveyWGoals	goalIRITAdj6Spg	"Goal Adjective 6 - Spring"	116.00		a	1	0
+nwea	langSurveyWGoals	goalIRITScore6Fall	"Goal IRIT Score 6 - Fall"	15.00		n	1	0
+nwea	langSurveyWGoals	goalIRITScore6Spg	"Goal IRIT Score 6 - Spring"	115.00		n	1	0
+nwea	langSurveyWGoals	goalRITAdj7Fall	"Goal Adjective 7 - Fall"	18.00		a	1	0
+nwea	langSurveyWGoals	goalRITAdj7Spg	"Goal Adjective 7 - Spring"	118.00		a	1	0
+nwea	langSurveyWGoals	goalRitScore5Fall	"Goal RIT Score 5 - Fall"	13.00		n	1	0
+nwea	langSurveyWGoals	goalRitScore5Spg	"Goal RIT Score 5 - Spring"	113.00		n	1	0
+nwea	langSurveyWGoals	goalRITScore7Fall	"Goal RIT Score 7 - Fall"	17.00		n	1	0
+nwea	langSurveyWGoals	goalRITScore7Spg	"Goal RIT Score 7 - Spring"	117.00		n	1	0
+nwea	langSurveyWGoals	growtMeasureYNFall	"Growth Measure - Fall"	21.00	pmiRedGreen	a	1	0
+nwea	langSurveyWGoals	growtMeasureYNSpg	"Growth Measure - Spring"	121.00	pmiRedGreen	a	1	0
+nwea	langSurveyWGoals	ritToReadingMaxFall	"RIT to Reading Max - Fall"	20.00		n	1	0
+nwea	langSurveyWGoals	ritToReadingMaxSpg	"RIT to Reading Max - Spring"	120.00		n	1	0
+nwea	langSurveyWGoals	ritToReadingMinFall	"RIT to Reading Min - Fall"	19.00		n	1	0
+nwea	langSurveyWGoals	ritToReadingMinSpg	"RIT to Reading Min - Spring"	119.00		n	1	0
+nwea	langSurveyWGoals	ritToReadingScoreFall	"RIT to Reading Score - Fall"	4.00		n	1	0
+nwea	langSurveyWGoals	ritToReadingScoreSpg	"RIT to Reading Score - Spring"	104.00		n	1	0
+nwea	langSurveyWGoals	stdntApplyWritgSkillGoalAdj1Fall	"Students Apply Writing Skills: Goal Adjective 1 - Fall"	6.00		a	1	0
+nwea	langSurveyWGoals	stdntApplyWritgSkillGoalAdj1Spg	"Students Apply Writing Skills: Goal Adjective 1 - Spring"	106.00		a	1	0
+nwea	langSurveyWGoals	stdntApplyWritSkillGoalRITScore1Fall	"Students Apply Writing Skills: Goal RIT Score 1 - Fall"	5.00		n	1	0
+nwea	langSurveyWGoals	stdntApplyWritSkillGoalRITScore1Spg	"Students Apply Writing Skills: Goal RIT Score 1 - Spring"	105.00		n	1	0
+nwea	langSurveyWGoals	stdntUseConventionGoalAdj2Fall	"Students Use Conventions: Goal Adjective 2 - Fall"	8.00		a	1	0
+nwea	langSurveyWGoals	stdntUseConventionGoalAdj2Spg	"Students Use Conventions: Goal Adjective 2 - Spring"	108.00		a	1	0
+nwea	langSurveyWGoals	stdntUseConventionGoalRITScore2Fall	"Students Use Conventions: Goal RIT Score 2 - Fall"	7.00		n	1	0
+nwea	langSurveyWGoals	stdntUseConventionGoalRITScore2Spg	"Students Use Conventions: Goal RIT Score 2 - Spring"	107.00		n	1	0
+nwea	langSurveyWGoals	stdntWriteExpositoryGoalAdj4Fall	"Students Write: Expository: Goal Adjective 4 - Fall"	12.00		a	1	0
+nwea	langSurveyWGoals	stdntWriteExpositoryGoalAdj4Spg	"Students Write: Expository: Goal Adjective 4 - Spring"	112.00		a	1	0
+nwea	langSurveyWGoals	stdntWriteExpositoryGoalRITScore4Fall	"Students Write: Expository: Goal RIT Score 4 - Fall"	11.00		n	1	0
+nwea	langSurveyWGoals	stdntWriteExpositoryGoalRITScore4Spg	"Students Write: Expository: Goal RIT Score 4 - Spring"	111.00		n	1	0
+nwea	langSurveyWGoals	stdntWriteExpressiveGoalAdj3Fall	"Students Write: Expressive: Goal Adjective 3 - Fall"	10.00		a	1	0
+nwea	langSurveyWGoals	stdntWriteExpressiveGoalAdj3Spg	"Students Write: Expressive: Goal Adjective 3 - Spring"	110.00		a	1	0
+nwea	langSurveyWGoals	stdntWriteExpressiveGoalRITScore3Fall	"Students Write: Expressive: Goal RIT Score 3 - Fall"	9.00		n	1	0
+nwea	langSurveyWGoals	stdntWriteExpressiveGoalRITScore3Spg	"Students Write: Expressive: Goal RIT Score 3 - Spring"	109.00		n	1	0
+nwea	langSurveyWGoals	testPercentileFall	"Test Percentile - Fall"	3.00		n	1	0
+nwea	langSurveyWGoals	testPercentileSpg	"Test Percentile - Spring"	103.00		n	1	0
+nwea	langSurveyWGoals	testRITScoreFall	"Test RIT Score - Fall"	1.00		n	1	0
+nwea	langSurveyWGoals	testRITScoreSpg	"Test RIT Score - Spring"	101.00		n	1	0
+nwea	langSurveyWGoals	testStdErrorFall	"Test Std Error - Fall"	2.00		n	1	0
+nwea	langSurveyWGoals	testStdErrorSpg	"Test Std Error - Spring"	102.00		n	1	0
+nwea	mathSurveyWGoals	algebraGoalAdj4Fall	"Algebra: Goal Adjective 4 - Fall"	11.00		a	1	0
+nwea	mathSurveyWGoals	algebraGoalAdj4Spg	"Algebra: Goal Adjective 4 - Spring"	111.00		a	1	0
+nwea	mathSurveyWGoals	algebraGoalRITScore4Fall	"Algebra: Goal RIT Score 4 - Fall"	10.00		n	1	0
+nwea	mathSurveyWGoals	algebraGoalRITScore4Spg	"Algebra: Goal RIT Score 4 - Spring"	110.00		n	1	0
+nwea	mathSurveyWGoals	dataAnalProbGoalAdj5Fall	"Data Analysis & Probability: Goal Adjective 5 - Fall"	13.00		a	1	0
+nwea	mathSurveyWGoals	dataAnalProbGoalAdj5Spg	"Data Analysis & Probability: Goal Adjective 5 - Spring"	113.00		a	1	0
+nwea	mathSurveyWGoals	dataAnalProbGoalRITScore5Fall	"Data Analysis & Probability: Goal RIT Score 5 - Fall"	12.00		n	1	0
+nwea	mathSurveyWGoals	dataAnalProbGoalRITScore5Spg	"Data Analysis & Probability: Goal RIT Score 5 - Spring"	112.00		n	1	0
+nwea	mathSurveyWGoals	geoGoalAdj2Fall	"Geometry: Goal RIT Adjective 2 - Fall"	7.00		a	1	0
+nwea	mathSurveyWGoals	geoGoalAdj2Spg	"Geometry: Goal RIT Adjective 2 - Spring"	107.00		a	1	0
+nwea	mathSurveyWGoals	geoGoalRITScore2Fall	"Geometry: Goal RIT Score 2 - Fall"	6.00		n	1	0
+nwea	mathSurveyWGoals	geoGoalRITScore2Spg	"Geometry: Goal RIT Score 2 - Spring"	106.00		n	1	0
+nwea	mathSurveyWGoals	growtMeasureYNFall	"Growth Measure - Fall"	14.00	pmiRedGreen	a	1	0
+nwea	mathSurveyWGoals	growtMeasureYNSpg	"Growth Measure - Spring"	113.00	pmiRedGreen	a	1	0
+nwea	mathSurveyWGoals	measurementGoalAdj3Fall	"Measurement: Goal Adjective 3 - Fall"	9.00		a	1	0
+nwea	mathSurveyWGoals	measurementGoalAdj3Spg	"Measurement: Goal Adjective 3 - Spring"	109.00		a	1	0
+nwea	mathSurveyWGoals	measurementGoalRITScore3Fall	"Measurement: Goal RIT Score 3 - Fall"	8.00		n	1	0
+nwea	mathSurveyWGoals	measurementGoalRITScore3Spg	"Measurement: Goal RIT Score 3 - Spring"	108.00		n	1	0
+nwea	mathSurveyWGoals	nbrConceptOperationGoalAdj1Fall	"Number Concepts & Operations: Goal Adjective 1 - Fall"	5.00		a	1	0
+nwea	mathSurveyWGoals	nbrConceptOperationGoalAdj1Spg	"Number Concepts & Operations: Goal Adjective 1 - Spring"	105.00		a	1	0
+nwea	mathSurveyWGoals	nbrConceptOperationGoalRITScore1Fall	"Number Concepts & Operations: Goal RIT Score 1 - Fall"	4.00		n	1	0
+nwea	mathSurveyWGoals	nbrConceptOperationGoalRITScore1Spg	"Number Concepts & Operations: Goal RIT Score 1 - Spring"	104.00		n	1	0
+nwea	mathSurveyWGoals	testPercentileFall	"Test Percentile - Fall"	3.00		n	1	0
+nwea	mathSurveyWGoals	testPercentileSpg	"Test Percentile - Spring"	103.00		n	1	0
+nwea	mathSurveyWGoals	testRITScoreFall	"Test RIT Score - Fall"	1.00		n	1	0
+nwea	mathSurveyWGoals	testRITScoreSpg	"Test RIT Score - Spring"	101.00		n	1	0
+nwea	mathSurveyWGoals	testStdErrorFall	"Test Std Error - Fall"	2.00		n	1	0
+nwea	mathSurveyWGoals	testStdErrorSpg	"Test Std Error - Spring"	102.00		n	1	0
+nwea	nweaAlgebra	compAndEstWithGoalAdj2Fall	"Computation & Estimation with: Goal Adjective 2 - Fall"	8.00		a	1	0
+nwea	nweaAlgebra	compAndEstWithGoalAdj2Spg	"Computation & Estimation with: Goal Adjective 2 - Spring"	108.00		a	1	0
+nwea	nweaAlgebra	compAndEstWithGoalRITScore2Fall	"Computation & Estimation with: Goal RIT Score 2 - Fall"	7.00		n	1	0
+nwea	nweaAlgebra	compAndEstWithGoalRITScore2Spg	"Computation & Estimation with: Goal RIT Score 2 - Spring"	107.00		n	1	0
+nwea	nweaAlgebra	equatAndInequalityGoalAdj5Fall	"Equations & Inequalities: Goal Adjective 5 - Fall"	14.00		a	1	0
+nwea	nweaAlgebra	equatAndInequalityGoalAdj5Spg	"Equations & Inequalities: Goal Adjective 5 - Spring"	114.00		a	1	0
+nwea	nweaAlgebra	equatAndInequalityGoalRITScore5Fall	"Equations & Inequalities: Goal RIT Score 5 - Fall"	13.00		n	1	0
+nwea	nweaAlgebra	equatAndInequalityGoalRITScore5Spg	"Equations & Inequalities: Goal RIT Score 5 - Spring"	113.00		n	1	0
+nwea	nweaAlgebra	expressionGoalAdj4Fall	"Expressions: Goal Adjective 4 - Fall"	12.00		a	1	0
+nwea	nweaAlgebra	expressionGoalAdj4Spg	"Expressions: Goal Adjective 4 - Spring"	112.00		a	1	0
+nwea	nweaAlgebra	expressionGoalRITScore4Fall	"Expressions: Goal RIT Score 4 - Fall"	11.00		n	1	0
+nwea	nweaAlgebra	expressionGoalRITScore4Spg	"Expressions: Goal RIT Score 4 - Spring"	111.00		n	1	0
+nwea	nweaAlgebra	growtMeasureYNFall	"Growth Measure - Fall"	15.00	pmiRedGreen	a	1	0
+nwea	nweaAlgebra	growtMeasureYNSpg	"Growth Measure - Spring"	115.00	pmiRedGreen	a	1	0
+nwea	nweaAlgebra	nbrSensePropAndGoalAdj1Fall	"Number Sense / Properties: Goal Adjective 1 - Fall"	6.00		a	1	0
+nwea	nweaAlgebra	nbrSensePropAndGoalAdj1Spg	"Number Sense / Properties: Goal Adjective 1 - Spring"	106.00		a	1	0
+nwea	nweaAlgebra	nbrSensePropAndGoalRITScore1Fall	"Number Sense / Properties: Goal RIT Score 1 - Fall"	5.00		n	1	0
+nwea	nweaAlgebra	nbrSensePropAndGoalRITScore1Spg	"Number Sense / Properties: Goal RIT Score 1 - Spring"	105.00		n	1	0
+nwea	nweaAlgebra	patFunctGraphGoalAdj3Fall	"Patterns / Functions / Graph: Goal Adjective 3 - Fall"	10.00		a	1	0
+nwea	nweaAlgebra	patFunctGraphGoalAdj3Spg	"Patterns / Functions / Graph: Goal Adjective 3 - Spring"	110.00		a	1	0
+nwea	nweaAlgebra	patFunctGraphGoalRITScore3Fall	"Patterns / Functions / Graph: Goal RIT Score 3 - Fall"	9.00		n	1	0
+nwea	nweaAlgebra	patFunctGraphGoalRITScore3Spg	"Patterns / Functions / Graph: Goal RIT Score 3 - Spring"	109.00		n	1	0
+nwea	nweaAlgebra	ritToReadingScoreFall	"RIT to Reading Score 5 - Fall"	4.00		n	1	0
+nwea	nweaAlgebra	ritToReadingScoreSpg	"RIT to Reading Score 5 - Spring"	104.00		n	1	0
+nwea	nweaAlgebra	testPercentileFall	"Test Percentile - Fall"	3.00		n	1	0
+nwea	nweaAlgebra	testPercentileSpg	"Test Percentile - Spring"	103.00		n	1	0
+nwea	nweaAlgebra	testRITScoreFall	"Test RIT Score - Fall"	1.00		n	1	0
+nwea	nweaAlgebra	testRITScoreSpg	"Test RIT Score - Spring"	101.00		n	1	0
+nwea	nweaAlgebra	testStdErrorFall	"Test Std Error - Fall"	2.00		n	1	0
+nwea	nweaAlgebra	testStdErrorSpg	"Test Std Error - Spring"	102.00		n	1	0
+nwea	primaryMath	algebraGoalAdj6Fall	"Algebra: Goal Adjective 6 - Fall"	16.00		a	1	0
+nwea	primaryMath	algebraGoalAdj6Spg	"Algebra: Goal Adjective 6 - Spring"	116.00		a	1	0
+nwea	primaryMath	algebraGoalRITScore6Fall	"Algebra: Goal RIT Score 6 - Fall"	15.00		n	1	0
+nwea	primaryMath	algebraGoalRITScore6Spg	"Algebra: Goal RIT Score 6 - Spring"	115.00		n	1	0
+nwea	primaryMath	compGoalAdj3Fall	"Computation: Goal Adjective 3 - Fall"	10.00		a	1	0
+nwea	primaryMath	compGoalAdj3Spg	"Computation: Goal Adjective 3 - Spring"	110.00		a	1	0
+nwea	primaryMath	compGoalRITScore3Fall	"Computation: Goal RIT Score 3 - Fall"	9.00		n	1	0
+nwea	primaryMath	compGoalRITScore3Spg	"Computation: Goal RIT Score 3 - Spring"	109.00		n	1	0
+nwea	primaryMath	growtMeasureYNFall	"Growth Measure - Fall"	19.00	pmiRedGreen	a	1	0
+nwea	primaryMath	growtMeasureYNSpg	"Growth Measure - Spring"	120.00	pmiRedGreen	a	1	0
+nwea	primaryMath	measureAndGeometryGoalAdj4Fall	"Measurement & Geometry: Goal Adjective 4 - Fall"	12.00		a	1	0
+nwea	primaryMath	measureAndGeometryGoalAdj4Spg	"Measurement & Geometry: Goal Adjective 4 - Spring"	112.00		a	1	0
+nwea	primaryMath	measureAndGeometryGoalRITScore4Fall	"Measurement & Geometry: Goal RIT Score 4 - Fall"	11.00		n	1	0
+nwea	primaryMath	measureAndGeometryGoalRITScore4Spg	"Measurement & Geometry: Goal RIT Score 4 - Spring"	111.00		n	1	0
+nwea	primaryMath	nbrSenseGoalAdj2Fall	"Number Sense: Goal Adjective 2 - Fall"	8.00		a	1	0
+nwea	primaryMath	nbrSenseGoalAdj2Spg	"Number Sense: Goal Adjective 2 - Spring"	108.00		a	1	0
+nwea	primaryMath	nbrSenseGoalRITScore2Fall	"Number Sense: Goal RIT Score 2 - Fall"	7.00		n	1	0
+nwea	primaryMath	nbrSenseGoalRITScore2Spg	"Number Sense: Goal RIT Score 2 - Spring"	107.00		n	1	0
+nwea	primaryMath	probSolveGoalAdj1Fall	"Problem Solving: Goal Adjective 1 - Fall"	6.00		a	1	0
+nwea	primaryMath	probSolveGoalAdj1Spg	"Problem Solving: Goal Adjective 1 - Spring"	106.00		a	1	0
+nwea	primaryMath	probSolveGoalRITScore1Fall	"Problem Solving: Goal RIT Score 1 - Fall"	5.00		n	1	0
+nwea	primaryMath	probSolveGoalRITScore1Spg	"Problem Solving: Goal RIT Score 1 - Spring"	105.00		n	1	0
+nwea	primaryMath	ritToReadingMaxFall	"RIT to Reading Max - Fall"	18.00		n	1	0
+nwea	primaryMath	ritToReadingMaxSpg	"RIT to Reading Max - Spring"	118.00		n	1	0
+nwea	primaryMath	ritToReadingMinFall	"RIT to Reading Min - Fall"	17.00		n	1	0
+nwea	primaryMath	ritToReadingMinSpg	"RIT to Reading Min - Spring"	117.00		n	1	0
+nwea	primaryMath	ritToReadingScoreFall	"RIT to Reading Score - Fall"	4.00		n	1	0
+nwea	primaryMath	ritToReadingScoreSpg	"RIT to Reading Score - Spring"	104.00		n	1	0
+nwea	primaryMath	statAndProbGoalAdj5Fall	"Statistics & Probability: Goal Adjective 5 - Fall - Fall"	14.00		a	1	0
+nwea	primaryMath	statAndProbGoalAdj5Spg	"Statistics & Probability: Goal Adjective 5 - Spring"	114.00		a	1	0
+nwea	primaryMath	statAndProbGoalRITScore5Fall	"Statistics & Probability: Goal RIT Score 5 - Fall"	13.00		n	1	0
+nwea	primaryMath	statAndProbGoalRITScore5Spg	"Statistics & Probability: Goal RIT Score 5 - Spring"	113.00		n	1	0
+nwea	primaryMath	testPercentileFall	"Test Percentile - Fall"	3.00		n	1	0
+nwea	primaryMath	testPercentileSpg	"Test Percentile - Spring"	103.00		n	1	0
+nwea	primaryMath	testRITScoreFall	"Test RIT Score - Fall"	1.00		n	1	0
+nwea	primaryMath	testRITScoreSpg	"Test RIT Score - Spring"	101.00		n	1	0
+nwea	primaryMath	testStdErrorFall	"Test Std Error - Fall"	2.00		n	1	0
+nwea	primaryMath	testStdErrorSpg	"Test Std Error - Spring"	102.00		n	1	0
+nwea	primaryReading	comprehensionGoalAdj5Fall	"Comprehension: Goal Adjective 4 - Fall"	14.00		a	1	0
+nwea	primaryReading	comprehensionGoalAdj5Spg	"Comprehension: Goal Adjective 4 - Spring"	114.00		a	1	0
+nwea	primaryReading	comprehensionGoalRITScore5Fall	"Comprehension: Goal RIT Score 4 - Fall"	13.00		n	1	0
+nwea	primaryReading	comprehensionGoalRITScore5Spg	"Comprehension: Goal RIT Score 4 - Spring"	113.00		n	1	0
+nwea	primaryReading	conceptOfPrintGoalAdj3Fall	"Concepts of Print: Goal Adjective 3 - Fall"	10.00		a	1	0
+nwea	primaryReading	conceptOfPrintGoalAdj3Spg	"Concepts of Print: Goal Adjective 3 - Spring"	110.00		a	1	0
+nwea	primaryReading	conceptOfPrintGoalRITScore3Fall	"Concepts of Print: Goal RIT Score 3 - Fall"	9.00		n	1	0
+nwea	primaryReading	conceptOfPrintGoalRITScore3Spg	"Concepts of Print: Goal RIT Score 3 - Spring"	109.00		n	1	0
+nwea	primaryReading	growtMeasureYNFall	"Growth Measure - Fall"	19.00	pmiRedGreen	a	1	0
+nwea	primaryReading	growtMeasureYNSpg	"Growth Measure - Spring"	119.00	pmiRedGreen	a	1	0
+nwea	primaryReading	phonAwareGoalAdj1Fall	"Phonological Awareness: Goal Adjective 1 - Fall"	6.00		a	1	0
+nwea	primaryReading	phonAwareGoalAdj1Spg	"Phonological Awareness: Goal Adjective 1 - Spring"	106.00		a	1	0
+nwea	primaryReading	phonAwareGoalRITScore1Fall	"Phonological Awareness: Goal RIT Score 1 - Fall"	5.00		n	1	0
+nwea	primaryReading	phonAwareGoalRITScore1Spg	"Phonological Awareness: Goal RIT Score 1 - Spring"	105.00		n	1	0
+nwea	primaryReading	phonicsGoalAdj2Fall	"Phonics: Goal Adjective 2 - Fall"	8.00		a	1	0
+nwea	primaryReading	phonicsGoalAdj2Spg	"Phonics: Goal Adjective 2 - Spring"	108.00		a	1	0
+nwea	primaryReading	phonicsGoalRITScore2Fall	"Phonics: Goal RIT Score 2 - Fall"	7.00		n	1	0
+nwea	primaryReading	phonicsGoalRITScore2Spg	"Phonics: Goal RIT Score 2 - Spring"	107.00		n	1	0
+nwea	primaryReading	ritToReadingMaxFall	"RIT to Reading Max - Fall"	18.00		n	1	0
+nwea	primaryReading	ritToReadingMaxSpg	"RIT to Reading Max - Spring"	118.00		n	1	0
+nwea	primaryReading	ritToReadingMinFall	"RIT to Reading Min - Fall"	17.00		n	1	0
+nwea	primaryReading	ritToReadingMinSpg	"RIT to Reading Min - Spring"	117.00		n	1	0
+nwea	primaryReading	ritToReadingScoreFall	"RIT to Reading Score - Fall"	4.00		n	1	0
+nwea	primaryReading	ritToReadingScoreSpg	"RIT to Reading Score - Spring"	104.00		n	1	0
+nwea	primaryReading	testPercentileFall	"Test Percentile - Fall"	3.00		n	1	0
+nwea	primaryReading	testPercentileSpg	"Test Percentile - Spring"	103.00		n	1	0
+nwea	primaryReading	testRITScoreFall	"Test RIT Score - Fall"	1.00		n	1	0
+nwea	primaryReading	testRITScoreSpg	"Test RIT Score - Spring"	101.00		n	1	0
+nwea	primaryReading	testStdErrorFall	"Test Std Error - Fall"	2.00		n	1	0
+nwea	primaryReading	testStdErrorSpg	"Test Std Error - Spring"	102.00		n	1	0
+nwea	primaryReading	vocAndWordStructGoalAdj4Fall	"Vocabulary & Word Structure: Goal Adjective 4 - Fall"	12.00		a	1	0
+nwea	primaryReading	vocAndWordStructGoalAdj4Spg	"Vocabulary & Word Structure: Goal Adjective 4 - Spring"	112.00		a	1	0
+nwea	primaryReading	vocAndWordStructGoalRITScore4Fall	"Vocabulary & Word Structure: Goal RIT Score 4 - Fall"	11.00		n	1	0
+nwea	primaryReading	vocAndWordStructGoalRITScore4Spg	"Vocabulary & Word Structure: Goal RIT Score 4 - Spring"	111.00		n	1	0
+nwea	primaryReading	writingGoalAdj6Fall	"Writing: Goal Adjective 6 - Fall"	16.00		a	1	0
+nwea	primaryReading	writingGoalAdj6Spg	"Writing: Goal Adjective 6 - Spring"	116.00		a	1	0
+nwea	primaryReading	writingGoalRITScore6Fall	"Writing: Goal RIT Score 6 - Fall"	15.00		n	1	0
+nwea	primaryReading	writingGoalRITScore6Spg	"Writing: Goal RIT Score 6 - Spring"	115.00		n	1	0
+nwea	readingSurveyWGoals	comprehensionGoalAdj2Fall	"Comprehension: Goal Adjective 2 - Fall"	8.00		a	1	0
+nwea	readingSurveyWGoals	comprehensionGoalAdj2Spg	"Comprehension: Goal Adjective 2 - Spring"	108.00		a	1	0
+nwea	readingSurveyWGoals	comprehensionGoalRITScore2Fall	"Comprehension: Goal RIT Score 2 - Fall"	7.00		n	1	0
+nwea	readingSurveyWGoals	comprehensionGoalRITScore2Spg	"Comprehension: Goal RIT Score 2 - Spring"	107.00		n	1	0
+nwea	readingSurveyWGoals	decodeVocabGoallAdj1Fall	"Decode / Vocab: Goal Adjective 1 - Fall"	6.00		a	1	0
+nwea	readingSurveyWGoals	decodeVocabGoallAdj1Spg	"Decode / Vocab: Goal Adjective 1 - Spring"	106.00		a	1	0
+nwea	readingSurveyWGoals	decodeVocabGoallRITScore1Fall	"Decode / Vocab: Goal RIT Score 1 - Fall"	5.00		n	1	0
+nwea	readingSurveyWGoals	decodeVocabGoallRITScore1Spg	"Decode / Vocab: Goal RIT Score 1 - Spring"	105.00		n	1	0
+nwea	readingSurveyWGoals	growtMeasureYNFall	"Growth Measure - Fall"	15.00	pmiRedGreen	a	1	0
+nwea	readingSurveyWGoals	growtMeasureYNSpg	"Growth Measure - Spring"	115.00	pmiRedGreen	a	1	0
+nwea	readingSurveyWGoals	ritToReadingMaxFall	"RIT to Reading Max - Fall"	14.00		n	1	0
+nwea	readingSurveyWGoals	ritToReadingMaxSpg	"RIT to Reading Max - Spring"	114.00		n	1	0
+nwea	readingSurveyWGoals	ritToReadingMinFall	"RIT to Reading Min - Fall"	13.00		n	1	0
+nwea	readingSurveyWGoals	ritToReadingMinSpg	"RIT to Reading Min - Spring"	113.00		n	1	0
+nwea	readingSurveyWGoals	ritToReadingScoreFall	"RIT to Reading Score - Fall"	4.00		n	1	0
+nwea	readingSurveyWGoals	ritToReadingScoreSpg	"RIT to Reading Score - Spring"	104.00		n	1	0
+nwea	readingSurveyWGoals	testPercentileFall	"Test Percentile - Fall"	3.00		n	1	0
+nwea	readingSurveyWGoals	testPercentileSpg	"Test Percentile - Spring"	103.00		n	1	0
+nwea	readingSurveyWGoals	testRITScoreFall	"Test RIT Score - Fall"	1.00		n	1	0
+nwea	readingSurveyWGoals	testRITScoreSpg	"Test RIT Score - Spring"	101.00		n	1	0
+nwea	readingSurveyWGoals	testStdErrorFall	"Test Std Error - Fall"	2.00		n	1	0
+nwea	readingSurveyWGoals	testStdErrorSpg	"Test Std Error - Spring"	102.00		n	1	0
+nwea	readingSurveyWGoals	undersstandInterLitGoalAdj3Fall	"Understand / Interpret Lit: Goal Adjective 3 - Fall"	10.00		a	1	0
+nwea	readingSurveyWGoals	undersstandInterLitGoalAdj3Spg	"Understand / Interpret Lit: Goal Adjective 3 - Spring"	110.00		a	1	0
+nwea	readingSurveyWGoals	undersstandInterLitGoalRITScore3Fall	"Understand / Interpret Lit: Goal RIT Score 3 - Fall"	9.00		n	1	0
+nwea	readingSurveyWGoals	undersstandInterLitGoalRITScore3Spg	"Understand / Interpret Lit: Goal RIT Score 3 - Spring"	109.00		n	1	0
+nwea	readingSurveyWGoals	understandInfoTextsGoalAdj4Fall	"Understanding Inform Texts: Goal Adjective 4 - Fall"	12.00		a	1	0
+nwea	readingSurveyWGoals	understandInfoTextsGoalAdj4Spg	"Understanding Inform Texts: Goal Adjective 4 - Spring"	112.00		a	1	0
+nwea	readingSurveyWGoals	understandInfoTextsGoalRITScore4Fall	"Understanding Inform Texts: Goal RIT Score 4 - Fall"	11.00		n	1	0
+nwea	readingSurveyWGoals	understandInfoTextsGoalRITScore4Spg	"Understanding Inform Texts: Goal RIT Score 4 - Spring"	111.00		n	1	0
+nwea	scienceGeneralScience	earthSpaceScienceGoalAdj2Fall	"Earth & Space Science: Goal RIT Score 2 - Fall"	7.00		a	1	0
+nwea	scienceGeneralScience	earthSpaceScienceGoalAdj2Spg	"Earth & Space Science: Goal RIT Score 2 - Spring"	107.00		a	1	0
+nwea	scienceGeneralScience	earthSpaceScienceGoalRITScore2Fall	"Earth & Space Science: Goal RIT Score 2 - Fall"	6.00		n	1	0
+nwea	scienceGeneralScience	earthSpaceScienceGoalRITScore2Spg	"Earth & Space Science: Goal RIT Score 2 - Spring"	106.00		n	1	0
+nwea	scienceGeneralScience	growtMeasureYNFall	"Growth Measure - Fall"	12.00	pmiRedGreen	a	1	0
+nwea	scienceGeneralScience	growtMeasureYNSpg	"Growth Measure - Spring"	112.00	pmiRedGreen	a	1	0
+nwea	scienceGeneralScience	lifeScienceGoalAdj1Fall	"Science as Inquiry: Goal RIT Score 1 - Fall"	5.00		a	1	0
+nwea	scienceGeneralScience	lifeScienceGoalAdj1Spg	"Science as Inquiry: Goal RIT Score 1 - Spring"	105.00		a	1	0
+nwea	scienceGeneralScience	lifeScienceGoalRITScore1Fall	"Life Science: Goal RIT Score 1 - Fall"	4.00		n	1	0
+nwea	scienceGeneralScience	lifeScienceGoalRITScore1Spg	"Life Science: Goal RIT Score 1 - Spring"	104.00		n	1	0
+nwea	scienceGeneralScience	phyScienceGoalAdj3Fall	"Physical Science: Goal Adjective 3 - Fall"	9.00		a	1	0
+nwea	scienceGeneralScience	phyScienceGoalAdj3Spg	"Physical Science: Goal Adjective 3 - Spring"	109.00		a	1	0
+nwea	scienceGeneralScience	phyScienceGoalRITScore3Fall	"Physical Science: Goal RIT Score 3 - Fall"	8.00		n	1	0
+nwea	scienceGeneralScience	phyScienceGoalRITScore3Spg	"Physical Science: Goal RIT Score 3 - Spring"	108.00		n	1	0
+nwea	scienceGeneralScience	ritToReadingMaxFall	"RIT to Reading Max - Fall"	11.00		n	1	0
+nwea	scienceGeneralScience	ritToReadingMaxSpg	"RIT to Reading Max - Spring"	111.00		n	1	0
+nwea	scienceGeneralScience	ritToReadingMinFall	"RIT to Reading Min - Fall"	10.00		n	1	0
+nwea	scienceGeneralScience	ritToReadingMinSpg	"RIT to Reading Min - Spring"	110.00		n	1	0
+nwea	scienceGeneralScience	testPercentileFall	"Test Percentile - Fall"	3.00		n	1	0
+nwea	scienceGeneralScience	testPercentileSpg	"Test Percentile - Spring"	103.00		n	1	0
+nwea	scienceGeneralScience	testRITScoreFall	"Test RIT Score - Fall"	1.00		n	1	0
+nwea	scienceGeneralScience	testRITScoreSpg	"Test RIT Score - Spring"	101.00		n	1	0
+nwea	scienceGeneralScience	testStdErrorFall	"Test Std Error - Fall"	2.00		n	1	0
+nwea	scienceGeneralScience	testStdErrorSpg	"Test Std Error - Spring"	102.00		n	1	0
+nwea	scienceProcessConcepts	growtMeasureYNFall	"Growth Measure - Fall"	11.00	pmiRedGreen	a	1	0
+nwea	scienceProcessConcepts	growtMeasureYNSpg	"Growth Measure - Spring"	111.00	pmiRedGreen	a	1	0
+nwea	scienceProcessConcepts	natureUnityConceptGoalAdj2Fall	"Nature & Uniify Concepts: Goal Adjective 2 - Fall"	8.00		a	1	0
+nwea	scienceProcessConcepts	natureUnityConceptGoalAdj2Spg	"Nature & Uniify Concepts: Goal Adjective 2 - Spring"	108.00		a	1	0
+nwea	scienceProcessConcepts	natureUnityConceptGoalRITScore2Fall	"Nature & Uniify Concepts: Goal RIT Score 2- Fall"	7.00		n	1	0
+nwea	scienceProcessConcepts	natureUnityConceptGoalRITScore2Spg	"Nature & Uniify Concepts: Goal RIT Score 2- Spring"	107.00		n	1	0
+nwea	scienceProcessConcepts	ritToReadingMaxFall	"RIT to Reading Max - Fall"	10.00		n	1	0
+nwea	scienceProcessConcepts	ritToReadingMaxSpg	"RIT to Reading Max - Spring"	110.00		n	1	0
+nwea	scienceProcessConcepts	ritToReadingMinFall	"RIT to Reading Min - Fall"	9.00		n	1	0
+nwea	scienceProcessConcepts	ritToReadingMinSpg	"RIT to Reading Min - Spring"	109.00		n	1	0
+nwea	scienceProcessConcepts	ritToReadingScoreFall	"RIT to Reading Score - Fall"	4.00		n	1	0
+nwea	scienceProcessConcepts	ritToReadingScoreSpg	"RIT to Reading Score - Spring"	104.00		n	1	0
+nwea	scienceProcessConcepts	scienceInqGoalAdj1Fall	"Science as Inquiry: Goal Adjective 1 - Fall"	6.00		a	1	0
+nwea	scienceProcessConcepts	scienceInqGoalAdj1Spg	"Science as Inquiry: Goal Adjective 1 - Spring"	106.00		a	1	0
+nwea	scienceProcessConcepts	scienceInqGoalRITScore1Fall	"Science as Inquiry: Goal RIT Score 1 - Fall"	5.00		n	1	0
+nwea	scienceProcessConcepts	scienceInqGoalRITScore1Spg	"Science as Inquiry: Goal RIT Score 1 - Spring"	105.00		n	1	0
+nwea	scienceProcessConcepts	testPercentileFall	"Test Percentile - Fall"	3.00		n	1	0
+nwea	scienceProcessConcepts	testPercentileSpg	"Test Percentile - Spring"	103.00		n	1	0
+nwea	scienceProcessConcepts	testRITScoreFall	"Test RIT Score - Fall"	1.00		n	1	0
+nwea	scienceProcessConcepts	testRITScoreSpg	"Test RIT Score - Spring"	101.00		n	1	0
+nwea	scienceProcessConcepts	testStdErrorFall	"Test Std Error - Fall"	2.00		n	1	0
+nwea	scienceProcessConcepts	testStdErrorSpg	"Test Std Error - Spring"	102.00		n	1	0

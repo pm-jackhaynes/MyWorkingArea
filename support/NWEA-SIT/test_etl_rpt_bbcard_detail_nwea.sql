@@ -55,7 +55,7 @@ proc: begin
         select  bb_group_id
         into    v_bb_group_id
         from    pm_bbcard_group
-        where   bb_group_code = 'nwea-rit'
+        where   bb_group_code = 'nwea'
         ;
         
         select  grade_level_id
@@ -155,7 +155,7 @@ proc: begin
                ,ods.test_name
                ,ods.student_id
                ,tdc.school_year_id
-               ,coalesce(gl.grade_code, 'unassigned')
+               ,coalesce(gl.grade_code, 'unassigned') 
                ,coalesce(gl.grade_level_id, 1000015)
                ,NULL -- Dont' know school code just yet
                ,case when sty.school_year_id is null then 1 end as backfill_needed_flag

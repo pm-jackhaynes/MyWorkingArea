@@ -1,3 +1,8 @@
+/* ************************************************************************************************* 
+
+Insure your reporting criteria (Baseball Card Selection Tree Information) was loaded
+
+************************************************************************************************* */
 use mn_wayzatas_ods;
 
 select 'MAX Group ID is: ', max(bb_group_id), ' and MUST be LESS than: ', pmi_admin.pmi_f_get_next_sequence('pm_bbcard_group', 1)
@@ -14,47 +19,11 @@ order by bb_measure_id, sort_order;
 select * from c_color_swatch;
 select * from c_color_swatch_list;
 
-select count(*) from rpt_bbcard_detail_nwea;  
-
 select distinct m.bb_measure_code, m.moniker, m.bb_measure_id 
 from pm_bbcard_measure m join pm_bbcard_measure_item mi on m.bb_measure_id = mi.bb_measure_id
 where m.bb_group_id = 1000015;
 
 select * from pm_bbcard_group;
-
-select * from pmi_admin.imp_table_column where table_id = 1000130;
-
--- call mn_wayzata.etl_imp();
-
-select distinct growth_measure_flag from mn_wayzata_ods.pmi_ods_nwea;
-
-select  upload_id, client_id, table_id, auto_batch_id, upload_status_code, 
-        import_table_name, upload_start_timestamp, last_edit_timestamp, 
-        substring(comment from 1 for 30) as comment 
-        from mn_wayzata_ods.imp_upload_log
-where upload_start_timestamp > '2012-01-07';
-
-
-update mn_wayzata_ods.imp_upload_log
-set upload_status_code = 'm'
-where upload_id = 3068223;
-
-select * from mn_wayzata_ods.imp_table_column where table_id = 1000130;
-select * from pmi_admin.imp_table_column where table_id = 1000130;
-
-use mn_wayzata_ods;
- -- After running the imp_sync procedure be sure the new values appear in the ods imp_table_column table.
- -- IMPORTANT: This drops the pmi_ods_nwea table so you might want to back up the infomration before running
-call imp_sync_table_def_to_admin_by_name('pmi_ods_nwea');
-call imp_drop_create_pmi_ods_table_by_name('pmi_ods_nwea');
-
--- create table mn_wayzata_ods.pmi_ods_nwea_jack as select * from mn_wayzata_ods.pmi_ods_nwea;
-truncate mn_wayzata_ods.pmi_ods_nwea;
-call mn_wayzata_ods.imp_process_upload_log();
-
-select count(*) from mn_wayzata_ods.pmi_ods_nwea;
-
-select distinct growth_measure_flag from mn_wayzata_ods.pmi_ods_nwea;
 
 /* ************************************************************************************************* 
 
@@ -71,8 +40,10 @@ call mn_wayzata.etl_pm_bbcard_measure_select();
 SQL to verify that you are creating the correct rows in the rpt_bbcard_detail Table
 
 ************************************************************************************************* */
-          
-select * from rpt_bbcard_detail_cogat 
+
+select count(*) from rpt_bbcard_detail_nwea;  
+
+select * from rpt_bbcard_detail_nwea
 where student_id = 127747191 limit 100;
 
 select s.last_name, s.first_name, rpt.school_year_id, rpt.student_id, rpt.bb_group_id, rpt.bb_measure_id, rpt.bb_measure_item_id, m.bb_measure_code, mi.bb_measure_item_code, rpt.score, rpt.score_color
@@ -115,6 +86,68 @@ select test_start_date, str_to_date(test_start_date, '%m/%d/%Y') from v_pmi_ods_
 Select * from mn_wayzata_ods.pmi_ods_nwea;
 
 
+/* ************************************************************************************************* 
+
+Troubleshoot, resolve  a failure to upload data and upload data
+
+************************************************************************************************* */
+
+
+-- call mn_wayzata.etl_imp();  -- This executes over 80 upload steps so don't run it unless you 
+-- have to.
+
+select * from pmi_admin.imp_table_column where table_id = 1000130;
+
+select distinct growth_measure_flag from mn_wayzata_ods.pmi_ods_nwea;
+
+select * from mn_wayzata_ods.f_pmi_ods_nwea_20120112_092251 limit 100;
+
+select max(length(c027)) from mn_wayzata_ods.f_pmi_ods_nwea_20120112_092251;
+
+select count(*) from  mn_wayzata_ods.f_pmi_ods_nwea_20120112_115348;
+
+call mn_wayzata_ods.imp_process_upload_log();
+call mn_wayzata.etl_pm_bbcard_measure_select();
+]
+select count(*) from  mn_wayzata_ods.pmi_ods_nwea;
+
+select  upload_id, client_id, table_id, auto_batch_id, upload_status_code, 
+        import_table_name, upload_start_timestamp, last_edit_timestamp, 
+        substring(comment from 1 for 30) as comment 
+        from mn_wayzata_ods.imp_upload_log
+where upload_start_timestamp > '2012-01-11';
+
+update mn_wayzata_ods.imp_upload_log
+set upload_status_code = 'm'
+where upload_id = 3068223;
+
+select c001, c002, c003 from mn_wayzata_ods.f_pmi_ods_nwea_20120112_092251 limit 3;
+select c001, c002, c003 from mn_wayzata_ods.F_Pmi_Ods_Nwea_20120112_115348  limit 3;
+
+select count(*) from rpt_bbcard_detail_nwea;  
+
+select * from rpt_bbcard_detail_nwea
+where student_id = 127747191 limit 100;
+
+select * from mn_wayzata_ods.imp_table_column where table_id = 1000130;
+select * from pmi_admin.imp_table_column where table_id = 1000130;
+
+ -- After running the imp_sync procedure be sure the new values appear in the ods imp_table_column table.
+ -- IMPORTANT: This drops the pmi_ods_nwea table so you might want to back up the infomration before running
+call mn_wayzata_ods.imp_sync_table_def_to_admin_by_name('pmi_ods_nwea');
+call mn_wayzata_ods.imp_drop_create_pmi_ods_table_by_name('pmi_ods_nwea');
+
+show create table mn_wayzata_ods.pmi_ods_nwea;
+-- create table mn_wayzata_ods.pmi_ods_nwea_jack as select * from mn_wayzata_ods.pmi_ods_nwea;
+truncate mn_wayzata_ods.pmi_ods_nwea;
+
+call mn_wayzata_ods.imp_process_upload_log();
+call mn_wayzata.etl_pm_bbcard_measure_select();
+
+select * from mn_wayzata_ods.pmi_ods_nwea order by student_id limit 100;
+
+select distinct growth_measure_flag from mn_wayzata_ods.pmi_ods_nwea;
+
 
 /*  ****************************************************************************************************************************************************************
 
@@ -144,6 +177,39 @@ use mn_wayzata_ods;
 create table pmi_ods_nwea_jack as select * from pmi_ods_nwea;
 select count(*) from pmi_ods_nwea_jack;
 
+/*  ****************************************************************************************************************************************************************
+
+      To create the tab delimited file using MySQL Workbench Export feature using the following queries.
+
+      These tab delimited files are to be emailed to Randall so he can load the pm_bbcard_measure and pm_bbcard_measure_item tables.
+      
+ *  ************************************************************************************************************************************************************** */
+
+
+use mn_wayzata;
+
+select 
+             bb_group_code
+            ,bb_measure_code
+            ,moniker
+            ,sort_order
+            ,coalesce(swatch_code, '')  swatch_code
+            ,active_flag
+            ,dynamic_creation_flag
+from tmp_pm_bbcard_measure;
+
+select 
+             bb_group_code
+            ,bb_measure_code
+            ,bb_measure_item_code
+            ,moniker
+            ,sort_order
+            ,coalesce(swatch_code, '')  swatch_code
+            ,score_sort_type_code
+            ,active_flag
+            ,dynamic_creation_flag
+from tmp_pm_bbcard_measure_item
+order by bb_measure_code, bb_measure_item_code;
 
 /*  ****************************************************************************************************************************************************************
 

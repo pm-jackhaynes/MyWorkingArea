@@ -1,0 +1,9 @@
+bb_group_code	bb_measure_code	moniker	sort_order	swatch_code	active_flag	dynamic_creation_flag
+nwea	langSurveyWGoals	"Language Survey With Goals"	1.00		1	0
+nwea	mathSurveyWGoals	"Math Survey With Goals"	2.00		1	0
+nwea	nweaAlgebra	"NWEA Algebra"	3.00		1	0
+nwea	primaryMath	"Primary - Math"	4.00		1	0
+nwea	primaryReading	"Primary - Reading"	5.00		1	0
+nwea	readingSurveyWGoals	"Reading Survey With Goals"	6.00		1	0
+nwea	scienceGeneralScience	"Science - General Science"	8.00		1	0
+nwea	scienceProcessConcepts	"Science - Concepts / Processes"	7.00		1	0
