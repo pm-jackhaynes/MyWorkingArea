@@ -1,18 +1,3 @@
-
-
-use mn_wayzata;
-
--- use mn_wayzata;
-
-/*
-
-MyISAM table 'rpt_bbcard_detail_nwea' is in use (most likely by a MERGE table). Try FLUSH TABLES.
-Bug #9687	merge table does not always release/closes tables from union if dropped 
-It appears that once the web application accesses the cogat report table, it doesn't release it.
-*/
-
-
-delimiter //
 drop procedure if exists etl_rpt_bbcard_detail_nwea  //
 create definer=`dbadmin`@`localhost` procedure etl_rpt_bbcard_detail_nwea ()
 
@@ -98,7 +83,7 @@ proc: begin
         ;
         
         create table `tmp_date_conversion` (
-           `test_start_date`      date NOT NULL
+            test_start_date`      date NOT NULL
           ,`test_start_date_str`  varchar(20) NOT NULL
           ,`school_year_id`       int unsigned,
          primary key (`test_start_date`),
@@ -123,12 +108,12 @@ proc: begin
         --
         
         insert tmp_date_conversion (
-            test_start_date 
-           ,test_start_date_str
+            str_to_date(test_start_date, v_date_format_mask),
+            test_start_date_str
         )
         select distinct
-            str_to_date(test_start_date, v_date_format_mask)
-           ,test_start_date
+            
+            test_start_date
         from v_pmi_ods_nwea ods;
 
         update tmp_date_conversion tdc
@@ -599,318 +584,7 @@ proc: begin
                                 when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'growtMeasureYNSpg'  then ods.growth_measure_flag                               
                             end
                     end
-                 when ods.term_name like 'Winter%' then 
-                    case
-                         when ods.test_name like '%Primary%Reading%' then
-                            case
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'testRITScoreWin'  then ods.test_rit_score 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'testStdErrorWin'  then ods.test_std_err 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'testPercentileWin'  then ods.test_percentile 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'ritToReadingScoreWin'  then ods.rit_reading_score    
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'phonAwareGoalRITScore1Win'  then ods.goal_rit_score1
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'phonAwareGoalAdj1Win'  then ods.goal_adjective1 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'phonicsGoalRITScore2Win'  then ods.goal_rit_score2 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'phonicsGoalAdj2Win'  then ods.goal_adjective2 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'conceptOfPrintGoalRITScore3Win'  then ods.goal_rit_score3 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'conceptOfPrintGoalAdj3Win'  then ods.goal_adjective3 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'vocAndWordStructGoalRITScore4Win'  then ods.goal_rit_score4 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'vocAndWordStructGoalAdj4Win'  then ods.goal_adjective4 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'comprehensionGoalRITScore5Win'  then ods.goal_rit_score5 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'comprehensionGoalAdj5Win'  then ods.goal_adjective5 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'writingGoalRITScore6Win'  then ods.goal_rit_score6 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'writingGoalAdj6Win'  then ods.goal_adjective6 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'ritToReadingMinWin'  then ods.rit_reading_min   
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'ritToReadingMaxWin'  then ods.rit_reading_max    
-                                when m.bb_measure_code = 'primaryReading'  and mi.bb_measure_item_code = 'growtMeasureYNWin'  then ods.growth_measure_flag                               
-                            end
-                         when ods.test_name like '%Primary%Math%' then
-                            case
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'testRITScoreWin'  then ods.test_rit_score 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'testStdErrorWin'  then ods.test_std_err 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'testPercentileWin'  then ods.test_percentile 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'ritToReadingScoreWin'  then ods.rit_reading_score    
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'probSolveGoalRITScore1Win'  then ods.goal_rit_score1
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'probSolveGoalAdj1Win'  then ods.goal_adjective1 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'nbrSenseGoalRITScore2Win'  then ods.goal_rit_score2 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'nbrSenseGoalAdj2Win'  then ods.goal_adjective2 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'compGoalRITScore3Win'  then ods.goal_rit_score3 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'compGoalAdj3Win'  then ods.goal_adjective3 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'measureAndGeometryGoalRITScore4Win'  then ods.goal_rit_score4 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'measureAndGeometryGoalAdj4Win'  then ods.goal_adjective4 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'statAndProbGoalRITScore5Win'  then ods.goal_rit_score5 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'statAndProbGoalAdj5Win'  then ods.goal_adjective5 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'algebraGoalRITScore6Win'  then ods.goal_rit_score6 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'algebraGoalAdj6Win'  then ods.goal_adjective6 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'ritToReadingMinWin'  then ods.rit_reading_min   
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'ritToReadingMaxWin'  then ods.rit_reading_max   
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'equatAndInequalityGoalAdj5Win'  then ods.goal_adjective5 
-                                when m.bb_measure_code = 'primaryMath'  and mi.bb_measure_item_code = 'growtMeasureYNWin'  then ods.growth_measure_flag                               
-                            end
-                        when ods.test_name like '%Language%Survey%' then  -- 'Language Survey w/ Goals WY V4'
-                           case
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'testRITScoreWin'  then ods.test_rit_score 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'testStdErrorWin'  then ods.test_std_err 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'testPercentileWin'  then ods.test_percentile 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'ritToReadingScoreWin'  then ods.rit_reading_score   
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'stdntApplyWritSkillGoalRITScore1Win'  then ods.goal_rit_score1
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'stdntApplyWritgSkillGoalAdj1Win'  then ods.goal_adjective1 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'stdntUseConventionGoalRITScore2Win'  then ods.goal_rit_score2 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'stdntUseConventionGoalAdj2Win'  then ods.goal_adjective2 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'stdntWriteExpressiveGoalRITScore3Win'  then ods.goal_rit_score3 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'stdntWriteExpressiveGoalAdj3Win'  then ods.goal_adjective3 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'stdntWriteExpositoryGoalRITScore4Win'  then ods.goal_rit_score4 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'stdntWriteExpositoryGoalAdj4Win'  then ods.goal_adjective4 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'goalRitScore5Win'  then ods.goal_rit_score5 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'goalAdj5Win'  then ods.goal_adjective5 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'goalIRITScore6Win'  then ods.goal_rit_score6
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'goalIRITAdj6Win'  then ods.goal_adjective6 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'goalRITScore7Win'  then ods.goal_rit_score7 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'goalRITAdj7Win'  then ods.goal_adjective7 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'ritToReadingMinWin'  then ods.rit_reading_min  
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'ritToReadingMaxWin'  then ods.rit_reading_max  -- Not Foud
-                                when m.bb_measure_code = 'langSurveyWGoals'  and mi.bb_measure_item_code = 'growtMeasureYNWin'  then ods.growth_measure_flag                               
-                            end
-                         when ods.test_name like '%Math%Survey%' then
-                            case
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'testRITScoreWin'  then ods.test_rit_score 
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'testStdErrorWin'  then ods.test_std_err 
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'testPercentileWin'  then ods.test_percentile 
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'nbrConceptOperationGoalRITScore1Win'  then ods.goal_rit_score1
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'nbrConceptOperationGoalAdj1Win'  then ods.goal_adjective1 
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'geoGoalRITScore2Win'  then ods.goal_rit_score2 
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'geoGoalAdj2Win'  then ods.goal_adjective2 
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'measurementGoalRITScore3Win'  then ods.goal_rit_score3 
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'measurementGoalAdj3Win'  then ods.goal_adjective3 
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'algebraGoalRITScore4Win'  then ods.goal_rit_score4 
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'algebraGoalAdj4Win'  then ods.goal_adjective4 
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'dataAnalProbGoalRITScore5Win'  then ods.goal_rit_score5 
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'dataAnalProbGoalAdj5Win'  then ods.goal_adjective5 
-                                when m.bb_measure_code = 'mathSurveyWGoals'  and mi.bb_measure_item_code = 'growtMeasureYNWin'  then ods.growth_measure_flag                               
-                            end
-                         when ods.test_name like '%NWEA Algebra%' then
-                            case
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'testRITScoreWin'  then ods.test_rit_score 
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'testStdErrorWin'  then ods.test_std_err 
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'testPercentileWin'  then ods.test_percentile 
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'ritToReadingScoreWin'  then ods.rit_reading_score    
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'nbrSensePropAndGoalRITScore1Win'  then ods.goal_rit_score1
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'nbrSensePropAndGoalAdj1Win'  then ods.goal_adjective1 
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'compAndEstWithGoalRITScore2Win'  then ods.goal_rit_score2 
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'compAndEstWithGoalAdj2Win'  then ods.goal_adjective2 
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'patFunctGraphGoalRITScore3Win'  then ods.goal_rit_score3 
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'patFunctGraphGoalAdj3Win'  then ods.goal_adjective3 
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'expressionGoalRITScore4Win'  then ods.goal_rit_score4 
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'expressionGoalAdj4Win'  then ods.goal_adjective4 
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'equatAndInequalityGoalRITScore5Win'  then ods.goal_rit_score5 
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'equatAndInequalityGoalAdj5Win'  then ods.goal_adjective5 
-                                when m.bb_measure_code = 'nweaAlgebra'  and mi.bb_measure_item_code = 'growtMeasureYNWin'  then ods.growth_measure_flag                               
-                            end
-                         when ods.test_name like '%Reading%Survey%' then
-                            case
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'testRITScoreWin'  then ods.test_rit_score 
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'testStdErrorWin'  then ods.test_std_err 
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'testPercentileWin'  then ods.test_percentile 
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'ritToReadingScoreWin'  then ods.rit_reading_score   
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'decodeVocabGoallRITScore1Win'  then ods.goal_rit_score1
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'decodeVocabGoallAdj1Win'  then ods.goal_adjective1 
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'comprehensionGoalRITScore2Win'  then ods.goal_rit_score2 
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'comprehensionGoalAdj2Win'  then ods.goal_adjective2 
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'undersstandInterLitGoalRITScore3Win'  then ods.goal_rit_score3 
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'undersstandInterLitGoalAdj3Win'  then ods.goal_adjective3 
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'understandInfoTextsGoalRITScore4Win'  then ods.goal_rit_score4 
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'understandInfoTextsGoalAdj4Win'  then ods.goal_adjective4 
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'ritToReadingMinWin'  then ods.rit_reading_min  
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'ritToReadingMaxWin'  then ods.rit_reading_max   
-                                when m.bb_measure_code = 'readingSurveyWGoals'  and mi.bb_measure_item_code = 'growtMeasureYNWin'  then ods.growth_measure_flag                               
-                            end
-                         when ods.test_name like '%Science%Concepts%' then 
-                            case
-                                when m.bb_measure_code = 'scienceProcessConcepts' and mi.bb_measure_item_code = 'testRITScoreWin'  then ods.test_rit_score 
-                                when m.bb_measure_code = 'scienceProcessConcepts' and mi.bb_measure_item_code = 'testStdErrorWin'  then ods.test_std_err 
-                                when m.bb_measure_code = 'scienceProcessConcepts' and mi.bb_measure_item_code = 'testPercentileWin'  then ods.test_percentile 
-                                when m.bb_measure_code = 'scienceProcessConcepts' and mi.bb_measure_item_code = 'ritToReadingScoreWin'  then ods.rit_reading_score   
-                                when m.bb_measure_code = 'scienceProcessConcepts' and mi.bb_measure_item_code = 'scienceInqGoalRITScore1Win'  then ods.goal_rit_score1
-                                when m.bb_measure_code = 'scienceProcessConcepts' and mi.bb_measure_item_code = 'scienceInqGoalAdj1Win'  then ods.goal_adjective1 
-                                when m.bb_measure_code = 'scienceProcessConcepts' and mi.bb_measure_item_code = 'natureUnityConceptGoalRITScore2Win'  then ods.goal_rit_score2 
-                                when m.bb_measure_code = 'scienceProcessConcepts' and mi.bb_measure_item_code = 'natureUnityConceptGoalAdj2Win'  then ods.goal_adjective2 
-                                when m.bb_measure_code = 'scienceProcessConcepts' and mi.bb_measure_item_code = 'ritToReadingMinWin'  then ods.rit_reading_min  
-                                when m.bb_measure_code = 'scienceProcessConcepts' and mi.bb_measure_item_code = 'ritToReadingMaxWin'  then ods.rit_reading_max   
-                                when m.bb_measure_code = 'scienceProcessConcepts'  and mi.bb_measure_item_code = 'growtMeasureYNWin'  then ods.growth_measure_flag                               
-                            end
-                         when ods.test_name like '%Science%General Science%' then
-                            case
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'testRITScoreWin'  then ods.test_rit_score 
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'testStdErrorWin'  then ods.test_std_err 
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'testPercentileWin'  then ods.test_percentile 
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'ritToReadingScoreWin'  then ods.rit_reading_score   
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'lifeScienceGoalRITScore1Win'  then ods.goal_rit_score1
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'lifeScienceGoalAdj1Win'  then ods.goal_adjective1 
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'earthSpaceScienceGoalRITScore2Win'  then ods.goal_rit_score2 
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'earthSpaceScienceGoalAdj2Win'  then ods.goal_adjective2 
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'phyScienceGoalRITScore3Win'  then ods.goal_rit_score3 
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'phyScienceGoalAdj3Win'  then ods.goal_adjective3 
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'ritToReadingMinWin'  then ods.rit_reading_min  
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'ritToReadingMaxWin'  then ods.rit_reading_max
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'growtMeasureYNWin'  then ods.growth_measure_flag                               
-                            end
-                    end
-                 when ods.term_name like 'Summer%' then 
-                    case
-                         when ods.test_name like '%Primary%Reading%' then
-                            case
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'testRITScoreSum'  then ods.test_rit_score 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'testStdErrorSum'  then ods.test_std_err 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'testPercentileSum'  then ods.test_percentile 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'ritToReadingScoreSum'  then ods.rit_reading_score    
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'phonAwareGoalRITScore1Sum'  then ods.goal_rit_score1
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'phonAwareGoalAdj1Sum'  then ods.goal_adjective1 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'phonicsGoalRITScore2Sum'  then ods.goal_rit_score2 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'phonicsGoalAdj2Sum'  then ods.goal_adjective2 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'conceptOfPrintGoalRITScore3Sum'  then ods.goal_rit_score3 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'conceptOfPrintGoalAdj3Sum'  then ods.goal_adjective3 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'vocAndWordStructGoalRITScore4Sum'  then ods.goal_rit_score4 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'vocAndWordStructGoalAdj4Sum'  then ods.goal_adjective4 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'comprehensionGoalRITScore5Sum'  then ods.goal_rit_score5 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'comprehensionGoalAdj5Sum'  then ods.goal_adjective5 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'writingGoalRITScore6Sum'  then ods.goal_rit_score6 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'writingGoalAdj6Sum'  then ods.goal_adjective6 
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'ritToReadingMinSum'  then ods.rit_reading_min   
-                                when m.bb_measure_code = 'primaryReading' and mi.bb_measure_item_code = 'ritToReadingMaxSum'  then ods.rit_reading_max    
-                                when m.bb_measure_code = 'primaryReading'  and mi.bb_measure_item_code = 'growtMeasureYNSum'  then ods.growth_measure_flag                               
-                            end
-                         when ods.test_name like '%Primary%Math%' then
-                            case
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'testRITScoreSum'  then ods.test_rit_score 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'testStdErrorSum'  then ods.test_std_err 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'testPercentileSum'  then ods.test_percentile 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'ritToReadingScoreSum'  then ods.rit_reading_score    
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'probSolveGoalRITScore1Sum'  then ods.goal_rit_score1
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'probSolveGoalAdj1Sum'  then ods.goal_adjective1 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'nbrSenseGoalRITScore2Sum'  then ods.goal_rit_score2 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'nbrSenseGoalAdj2Sum'  then ods.goal_adjective2 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'compGoalRITScore3Sum'  then ods.goal_rit_score3 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'compGoalAdj3Sum'  then ods.goal_adjective3 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'measureAndGeometryGoalRITScore4Sum'  then ods.goal_rit_score4 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'measureAndGeometryGoalAdj4Sum'  then ods.goal_adjective4 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'statAndProbGoalRITScore5Sum'  then ods.goal_rit_score5 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'statAndProbGoalAdj5Sum'  then ods.goal_adjective5 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'algebraGoalRITScore6Sum'  then ods.goal_rit_score6 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'algebraGoalAdj6Sum'  then ods.goal_adjective6 
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'ritToReadingMinSum'  then ods.rit_reading_min   
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'ritToReadingMaxSum'  then ods.rit_reading_max   
-                                when m.bb_measure_code = 'primaryMath' and mi.bb_measure_item_code = 'equatAndInequalityGoalAdj5Sum'  then ods.goal_adjective5 
-                                when m.bb_measure_code = 'primaryMath'  and mi.bb_measure_item_code = 'growtMeasureYNSum'  then ods.growth_measure_flag                               
-                            end
-                        when ods.test_name like '%Language%Survey%' then  -- 'Language Survey w/ Goals WY V4'
-                           case
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'testRITScoreSum'  then ods.test_rit_score 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'testStdErrorSum'  then ods.test_std_err 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'testPercentileSum'  then ods.test_percentile 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'ritToReadingScoreSum'  then ods.rit_reading_score   
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'stdntApplyWritSkillGoalRITScore1Sum'  then ods.goal_rit_score1
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'stdntApplyWritgSkillGoalAdj1Sum'  then ods.goal_adjective1 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'stdntUseConventionGoalRITScore2Sum'  then ods.goal_rit_score2 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'stdntUseConventionGoalAdj2Sum'  then ods.goal_adjective2 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'stdntWriteExpressiveGoalRITScore3Sum'  then ods.goal_rit_score3 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'stdntWriteExpressiveGoalAdj3Sum'  then ods.goal_adjective3 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'stdntWriteExpositoryGoalRITScore4Sum'  then ods.goal_rit_score4 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'stdntWriteExpositoryGoalAdj4Sum'  then ods.goal_adjective4 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'goalRitScore5Sum'  then ods.goal_rit_score5 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'goalAdj5Sum'  then ods.goal_adjective5 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'goalIRITScore6Sum'  then ods.goal_rit_score6
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'goalIRITAdj6Sum'  then ods.goal_adjective6 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'goalRITScore7Sum'  then ods.goal_rit_score7 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'goalRITAdj7Sum'  then ods.goal_adjective7 
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'ritToReadingMinSum'  then ods.rit_reading_min  
-                                when m.bb_measure_code = 'langSurveyWGoals' and mi.bb_measure_item_code = 'ritToReadingMaxSum'  then ods.rit_reading_max  -- Not Foud
-                                when m.bb_measure_code = 'langSurveyWGoals'  and mi.bb_measure_item_code = 'growtMeasureYNSum'  then ods.growth_measure_flag                               
-                            end
-                         when ods.test_name like '%Math%Survey%' then
-                            case
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'testRITScoreSum'  then ods.test_rit_score 
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'testStdErrorSum'  then ods.test_std_err 
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'testPercentileSum'  then ods.test_percentile 
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'nbrConceptOperationGoalRITScore1Sum'  then ods.goal_rit_score1
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'nbrConceptOperationGoalAdj1Sum'  then ods.goal_adjective1 
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'geoGoalRITScore2Sum'  then ods.goal_rit_score2 
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'geoGoalAdj2Sum'  then ods.goal_adjective2 
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'measurementGoalRITScore3Sum'  then ods.goal_rit_score3 
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'measurementGoalAdj3Sum'  then ods.goal_adjective3 
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'algebraGoalRITScore4Sum'  then ods.goal_rit_score4 
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'algebraGoalAdj4Sum'  then ods.goal_adjective4 
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'dataAnalProbGoalRITScore5Sum'  then ods.goal_rit_score5 
-                                when m.bb_measure_code = 'mathSurveyWGoals' and mi.bb_measure_item_code = 'dataAnalProbGoalAdj5Sum'  then ods.goal_adjective5 
-                                when m.bb_measure_code = 'mathSurveyWGoals'  and mi.bb_measure_item_code = 'growtMeasureYNSum'  then ods.growth_measure_flag                               
-                            end
-                         when ods.test_name like '%NWEA Algebra%' then
-                            case
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'testRITScoreSum'  then ods.test_rit_score 
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'testStdErrorSum'  then ods.test_std_err 
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'testPercentileSum'  then ods.test_percentile 
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'ritToReadingScoreSum'  then ods.rit_reading_score    
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'nbrSensePropAndGoalRITScore1Sum'  then ods.goal_rit_score1
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'nbrSensePropAndGoalAdj1Sum'  then ods.goal_adjective1 
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'compAndEstWithGoalRITScore2Sum'  then ods.goal_rit_score2 
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'compAndEstWithGoalAdj2Sum'  then ods.goal_adjective2 
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'patFunctGraphGoalRITScore3Sum'  then ods.goal_rit_score3 
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'patFunctGraphGoalAdj3Sum'  then ods.goal_adjective3 
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'expressionGoalRITScore4Sum'  then ods.goal_rit_score4 
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'expressionGoalAdj4Sum'  then ods.goal_adjective4 
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'equatAndInequalityGoalRITScore5Sum'  then ods.goal_rit_score5 
-                                when m.bb_measure_code = 'nweaAlgebra' and mi.bb_measure_item_code = 'equatAndInequalityGoalAdj5Sum'  then ods.goal_adjective5 
-                                when m.bb_measure_code = 'nweaAlgebra'  and mi.bb_measure_item_code = 'growtMeasureYNSum'  then ods.growth_measure_flag                               
-                            end
-                         when ods.test_name like '%Reading%Survey%' then
-                            case
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'testRITScoreSum'  then ods.test_rit_score 
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'testStdErrorSum'  then ods.test_std_err 
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'testPercentileSum'  then ods.test_percentile 
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'ritToReadingScoreSum'  then ods.rit_reading_score   
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'decodeVocabGoallRITScore1Sum'  then ods.goal_rit_score1
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'decodeVocabGoallAdj1Sum'  then ods.goal_adjective1 
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'comprehensionGoalRITScore2Sum'  then ods.goal_rit_score2 
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'comprehensionGoalAdj2Sum'  then ods.goal_adjective2 
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'undersstandInterLitGoalRITScore3Sum'  then ods.goal_rit_score3 
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'undersstandInterLitGoalAdj3Sum'  then ods.goal_adjective3 
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'understandInfoTextsGoalRITScore4Sum'  then ods.goal_rit_score4 
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'understandInfoTextsGoalAdj4Sum'  then ods.goal_adjective4 
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'ritToReadingMinSum'  then ods.rit_reading_min  
-                                when m.bb_measure_code = 'readingSurveyWGoals' and mi.bb_measure_item_code = 'ritToReadingMaxSum'  then ods.rit_reading_max   
-                                when m.bb_measure_code = 'readingSurveyWGoals'  and mi.bb_measure_item_code = 'growtMeasureYNSum'  then ods.growth_measure_flag                               
-                            end
-                         when ods.test_name like '%Science%Concepts%' then 
-                            case
-                                when m.bb_measure_code = 'scienceProcessConcepts' and mi.bb_measure_item_code = 'testRITScoreSum'  then ods.test_rit_score 
-                                when m.bb_measure_code = 'scienceProcessConcepts' and mi.bb_measure_item_code = 'testStdErrorSum'  then ods.test_std_err 
-                                when m.bb_measure_code = 'scienceProcessConcepts' and mi.bb_measure_item_code = 'testPercentileSum'  then ods.test_percentile 
-                                when m.bb_measure_code = 'scienceProcessConcepts' and mi.bb_measure_item_code = 'ritToReadingScoreSum'  then ods.rit_reading_score   
-                                when m.bb_measure_code = 'scienceProcessConcepts' and mi.bb_measure_item_code = 'scienceInqGoalRITScore1Sum'  then ods.goal_rit_score1
-                                when m.bb_measure_code = 'scienceProcessConcepts' and mi.bb_measure_item_code = 'scienceInqGoalAdj1Sum'  then ods.goal_adjective1 
-                                when m.bb_measure_code = 'scienceProcessConcepts' and mi.bb_measure_item_code = 'natureUnityConceptGoalRITScore2Sum'  then ods.goal_rit_score2 
-                                when m.bb_measure_code = 'scienceProcessConcepts' and mi.bb_measure_item_code = 'natureUnityConceptGoalAdj2Sum'  then ods.goal_adjective2 
-                                when m.bb_measure_code = 'scienceProcessConcepts' and mi.bb_measure_item_code = 'ritToReadingMinSum'  then ods.rit_reading_min  
-                                when m.bb_measure_code = 'scienceProcessConcepts' and mi.bb_measure_item_code = 'ritToReadingMaxSum'  then ods.rit_reading_max   
-                                when m.bb_measure_code = 'scienceProcessConcepts'  and mi.bb_measure_item_code = 'growtMeasureYNSum'  then ods.growth_measure_flag                               
-                            end
-                         when ods.test_name like '%Science%General Science%' then
-                            case
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'testRITScoreSum'  then ods.test_rit_score 
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'testStdErrorSum'  then ods.test_std_err 
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'testPercentileSum'  then ods.test_percentile 
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'ritToReadingScoreSum'  then ods.rit_reading_score   
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'lifeScienceGoalRITScore1Sum'  then ods.goal_rit_score1
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'lifeScienceGoalAdj1Sum'  then ods.goal_adjective1 
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'earthSpaceScienceGoalRITScore2Sum'  then ods.goal_rit_score2 
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'earthSpaceScienceGoalAdj2Sum'  then ods.goal_adjective2 
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'phyScienceGoalRITScore3Sum'  then ods.goal_rit_score3 
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'phyScienceGoalAdj3Sum'  then ods.goal_adjective3 
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'ritToReadingMinSum'  then ods.rit_reading_min  
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'ritToReadingMaxSum'  then ods.rit_reading_max
-                                when m.bb_measure_code = 'scienceGeneralScience' and mi.bb_measure_item_code = 'growtMeasureYNSum'  then ods.growth_measure_flag                               
-                            end
-                    end
-                    
-            end) as score
+             end) as score
             ,'a'
             , NULL  -- Don't know color yet
             ,1234
@@ -955,17 +629,13 @@ proc: begin
         prepare sql_scan_log from @sql_scan_log;
         execute sql_scan_log;
         deallocate prepare sql_scan_log;
-        /*
+        
         drop table if exists `tmp_stu_admin`;
         drop table if exists `tmp_date_conversion`;
         drop table if exists `tmp_student_year_backfill`;
-        */
+        
         
     end if;
 
 end proc;
 //
-
-call etl_rpt_bbcard_detail_nwea ()
-//
-
